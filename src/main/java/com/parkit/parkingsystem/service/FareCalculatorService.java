@@ -17,7 +17,9 @@ public class FareCalculatorService {
 
         Duration difference = Duration.between(inHour.toInstant(), outHour.toInstant()); //outHour - inHour;
 
-        if (difference.toHours() <= 0.75) {
+        if(difference.toMinutes() <= 30) {
+            duration = 0;
+        } else if (difference.toMinutes() <= 45 && difference.toMinutes() > 30) {
             duration = 0.75;
         } else {
           duration = difference.toHours();
