@@ -1,5 +1,6 @@
 package com.parkit.parkingsystem;
 
+import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
 import com.parkit.parkingsystem.dao.TicketDAO;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.Date;
 
@@ -58,4 +60,14 @@ public class ParkingServiceTest {
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
     }
 
+    @Test
+    public void processDiscountForRecurrentUsersTest () {
+        parkingService.setRecurrentUser(true);
+
+        parkingService.processExitingVehicle();
+
+        double result = ticketDAO.getTicket(anyString()).getPrice();
+
+        assertThat(result).isEqualTo(Fare.CAR_RATE_PER_HOUR * 5 / 100);
+    }
 }
