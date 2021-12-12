@@ -28,8 +28,8 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e73b7568-1383-449e-9270-4435c9fb0180">
-      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from prod.ticket]]></console>
-      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[delete from prod.parking]]></console>
+      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from test.parking]]></console>
+      <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from test.ticket]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
