@@ -51,7 +51,7 @@ public class ParkingService {
                 ticket.setParkingSpot(parkingSpot);
                 ticket.setVehicleRegNumber(vehicleRegNumber);
 
-                //vérifier si l'utilisateur est recurrent
+                //Check if user is recurrent
 
                 if(ticketDAO.getTicket(vehicleRegNumber) !=  null) {
                     setRecurrentUser(true);

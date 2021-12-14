@@ -19,6 +19,7 @@ public class ParkingSpotDAOTest {
     public void updateParkingCarTest () {
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, true);
 
+        //update the parking spot to available
         parkingSpotDAO.updateParking(parkingSpot);
 
         int result = parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR);
@@ -37,8 +38,10 @@ public class ParkingSpotDAOTest {
         assertThat(parkingSpot.getId()).isEqualTo(result);
     }
 
+    //Test limit cases
+
     @Test
-    public void updateInvalidParkingSpotCarTest () {
+    public void updateInvalidParkingSpotCarTestShouldReturnFalse () {
         boolean result = parkingSpotDAO.updateParking(null);
 
         assertThat(result).isEqualTo(false);

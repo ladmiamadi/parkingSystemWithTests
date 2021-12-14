@@ -89,13 +89,15 @@ public class ParkingServiceTest {
         parkingService.processExitingVehicle();
 
         double result = ticketDAO.getTicket(anyString()).getPrice();
+
+        // check if the ticket was updated in the database
         verify(ticketDAO, Mockito.times(1)).updateTicket(any());
         assertThat(result).isEqualTo(Fare.CAR_RATE_PER_HOUR * 5 / 100);
     }
 
-    // Tester les cas limites
+    // Test limit cases
     @Test
-    public void processExitingVehicleIfInvalidTicketTest(){
+    public void testExitingVehicleProcessWithInvalidTicket(){
         when(ticketDAO.getTicket(any())).thenReturn(null);
         parkingService.processExitingVehicle();
 
@@ -103,7 +105,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void processIncomingVehicleWithNullParkingSpotTest() {
+    public void testIncomingVehicleProcessWithNullParkingSpot() {
         when(inputReaderUtil.readSelection()).thenReturn(1);
         when(parkingSpotDAO.getNextAvailableSlot(any())).thenThrow(NullPointerException.class);
         parkingService.processIncomingVehicle();
@@ -111,19 +113,21 @@ public class ParkingServiceTest {
         verify(ticketDAO, Mockito.never()).saveTicket(any());
     }
     @Test
-    public void processIncomingVehicleWithInvalidTypeVehicleTest() {
+    public void testIncomingVehicleProcessWithInvalidTypeVehicle() {
         when(inputReaderUtil.readSelection()).thenThrow(IllegalArgumentException.class);
 
         verify(ticketDAO, Mockito.never()).saveTicket(any());
     }
 
     @Test
-    public void TestGettingNextParkingNumberCarIfParkingIsFullShouldReturnNull () {
+    public void testGettingNextParkingSpotCarWhenParkingIsFullShouldReturnNull () {
         when(inputReaderUtil.readSelection()).thenReturn(1);
+
         ParkingSpot parkingSpot1 = new ParkingSpot(1, ParkingType.CAR, false);
         ParkingSpot parkingSpot2 = new ParkingSpot(2, ParkingType.CAR, false);
         ParkingSpot parkingSpot3 = new ParkingSpot(3, ParkingType.CAR, false);
 
+        // update all parking spots to not available in the database
         when(parkingSpotDAO.updateParking(parkingSpot1)).thenReturn(true);
         when(parkingSpotDAO.updateParking(parkingSpot2)).thenReturn(true);
         when(parkingSpotDAO.updateParking(parkingSpot3)).thenReturn(true);
@@ -133,7 +137,7 @@ public class ParkingServiceTest {
     }
 
     @Test
-    public void TestGettingNextParkingNumberBikeIfParkingIsFullShouldReturnNull () {
+    public void testGettingNextParkingSpotBikeWhenParkingIsFullShouldReturnNull () {
         when(inputReaderUtil.readSelection()).thenReturn(2);
         ParkingSpot parkingSpot1 = new ParkingSpot(4, ParkingType.BIKE, false);
         ParkingSpot parkingSpot2 = new ParkingSpot(5, ParkingType.BIKE, false);

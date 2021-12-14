@@ -78,7 +78,7 @@ public class ParkingDataBaseIT {
     }
 
     @Test
-    public void testGetNextParkingSpotIfAvailable () throws InterruptedException {
+    public void testGettingNextParkingSpotIfAvailable () throws InterruptedException {
         testParkingACar();
         testParkingLotExit();
         Ticket ticketResult = ticketDAO.getTicket("ABCDEF");

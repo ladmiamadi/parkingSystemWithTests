@@ -50,6 +50,7 @@ public class TicketDAOTest {
 
         Ticket result = ticketDAO.getTicket("1000");
 
+        //check if the saved ticket is the same ticket initialised
         assertThat(result.getVehicleRegNumber()).isEqualTo(ticket.getVehicleRegNumber());
     }
 
@@ -70,8 +71,10 @@ public class TicketDAOTest {
         assertThat(updatedResult.getVehicleRegNumber()).isEqualTo(ticket.getVehicleRegNumber());
     }
 
+    // Test limit cases
+
     @Test
-    public void updateTicketWithUnknownVehiculeNumberTest () {
+    public void updateTicketWithUnknownVehicleNumberTest() {
         Ticket ticket;
         ticket = ticketDAO.getTicket(null);
         boolean result = ticketDAO.updateTicket(ticket);
@@ -87,5 +90,4 @@ public class TicketDAOTest {
 
         assertThat(result).isEqualTo(false);
     }
-
 }

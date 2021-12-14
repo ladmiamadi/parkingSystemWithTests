@@ -1,6 +1,5 @@
 package com.parkit.parkingsystem.model;
 
-import java.util.Calendar;
 import java.util.Date;
 
 public class Ticket {
@@ -44,18 +43,19 @@ public class Ticket {
     }
 
     public Date getInTime() {
-        return inTime;
+        return inTime != null ? new Date(inTime.getTime()) : null;
     }
 
     public void setInTime(Date inTime) {
-        this.inTime = inTime;
+        this.inTime = inTime != null ? new Date(inTime.getTime()) : null;
     }
 
+
     public Date getOutTime() {
-        return outTime;
+        return outTime != null ? new Date(outTime.getTime()) : null;
     }
 
     public void setOutTime(Date outTime) {
-        this.outTime = outTime;
+        this.outTime = outTime != null ? new Date(outTime.getTime()) : null;
     }
 }
