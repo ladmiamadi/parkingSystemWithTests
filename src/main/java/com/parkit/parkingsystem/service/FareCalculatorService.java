@@ -19,7 +19,7 @@ public class FareCalculatorService {
 
         if(difference.toMinutes() <= 30) {
             duration = 0;
-        } else if (difference.toMinutes() <= 45 && difference.toMinutes() > 30) {
+        } else if (difference.toMinutes() <= 45) {
             duration = 0.75;
         } else {
           duration = difference.toHours();

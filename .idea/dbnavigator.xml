@@ -24,11 +24,17 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="e73b7568-1383-449e-9270-4435c9fb0180">
+        <schema name="information_schema" object-types="table, view, function" />
+        <schema name="prod" object-types="table, view, function, column" />
+        <schema name="test" object-types="table, view" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e73b7568-1383-449e-9270-4435c9fb0180">
-      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from test.parking]]></console>
+      <console name="Connection" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from prod.ticket]]></console>
       <console name="Connection 1" type="STANDARD" schema="information_schema" session="Main"><![CDATA[select * from test.ticket]]></console>
     </connection>
   </component>
